@@ -1,10 +1,47 @@
-body, html {
+ body, html {
     height: 100%;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.container {
+    position: relative;
+}
 
+.newcontainer{
+    width: 100%;
+    min-height: 100vh;
+}
+
+.profile-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+   
+}
+.profile-btn button{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    font-size: 8px;
+}
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding:10px;
+}
+
+.button-group button {
+    width: 80px;
+    height: 80px;
+    font-size: 16px;
+    margin: 10px;
+}
+.card-body{
+    padding: 70px;
+}
 .card {
     margin-top: -50px;  /* Adjusts the vertical position of the login box */
 }
