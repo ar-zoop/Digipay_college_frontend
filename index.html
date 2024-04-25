@@ -21,19 +21,24 @@
         <div class="card shadow" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title text-center">Login</h5>
-                <form>
+                <form id="form-signin">
                     <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" required>
+                        <label for="phoneNumber" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phoneNumber" required>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                    <button id="btn-submit" type="submit" class="btn btn-primary w-100">Sign In</button>
+                    <div id="error-message" class="text-danger text-center mt-3" style="display: none;"></div>
+        
                 </form>
             </div>
         </div>
     </div>
+
+    <script src="js/indexScript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 </body>
 </html>
