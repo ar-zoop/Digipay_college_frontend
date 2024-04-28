@@ -3,7 +3,12 @@
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
-
+.mb-3 {
+    margin: 10px;
+    border:10px;
+    padding: 10px;
+    background-color: beige;
+}
 .container {
     position: relative;
 }
@@ -32,15 +37,18 @@
     margin-top: 20px;
     padding:10px;
 }
-
+a {
+    color: black; /* Change this to the color you want */
+}
 .button-group button {
+    background-color: gray;
     width: 80px;
     height: 80px;
-    font-size: 16px;
+    font-size: 12px;
     margin: 10px;
 }
 .card-body{
-    padding: 70px;
+    padding: 35px;
 }
 .card {
     margin-top: -50px;  /* Adjusts the vertical position of the login box */
