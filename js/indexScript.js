@@ -1,5 +1,5 @@
 const phoneNumber = document.getElementById("phoneNumber")
-const password = document.getElementById("password") 
+const password = document.getElementById("password")
 const form = document.getElementById('form-signin');
 const errorMessageDiv = document.getElementById("error-message");
 
@@ -12,11 +12,13 @@ const signIn =  async(d) => {
             data : d
         })
         console.log(response)
-        if (response.status == 200 ){
+        if (response.status == 201 || response.status == 200 ){
             console.log("Login successful");
-            const jwtToken = json.response.response;
+            const jwtToken = response.data.data;
+            console.log('jwtToken', jwtToken);
+            console.log('phoneNumber', d.phoneNumber);
             localStorage.setItem('jwtToken', jwtToken);
-            localStorage.setItem('phoneNumber', response.phoneNumber);
+            localStorage.setItem('phoneNumber', d.phoneNumber);
             window.location.href = 'dashboard.html';  
         }
         else{
