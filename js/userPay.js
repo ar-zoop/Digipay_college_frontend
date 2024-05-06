@@ -62,7 +62,7 @@ const getAllVouchers = async (userData, merchantPurpose) => {
 			console.log(voucherArray)
 			
 			for (i = 0; i < voucherArray.length; i++) {
-				if (voucherArray[i].purpose == merchantPurpose) {
+				if (voucherArray[i].purpose == merchantPurpose && voucherArray[i].amount >= 0) {
 					voucherArrayWithMatchingPurpose.push(voucherArray[i])
 				}
 			}
@@ -79,20 +79,17 @@ const getAllVouchers = async (userData, merchantPurpose) => {
 					expiryDate = voucherArrayWithMatchingPurpose[i].expiryDate;
 					const radioHtml = `
 			<div class="form-check">
-            <input class="mb-3 form-check-input" type="radio" id="option${i}" value="${i}" name="voucherOption">
-            <label class="form-check-label" for="option0">
-                <div>Voucher Purpose: <span>${voucherPurpose}</span></div>
-                <div>Amount: <span>${amount}</span></div>
-                <div>Expiry Date: <span>${expiryDate}</span></div>
-            </label><hr>
+			<input class="mb-3 form-check-input" type="radio" id="option${i}" value="${i}" name="voucherOption">
+			<label class="form-check-label" for="option0">
+				<div>Voucher Purpose: <span>${voucherPurpose}</span></div>
+				<div>Amount: <span>${amount}</span></div>
+				<div>Expiry Date: <span>${expiryDate}</span></div>
+			</label><hr>
 
-        </div>
+		</div>
 		`
 					container.innerHTML += radioHtml;
 				}
-
-				//SHOW THE NEXT BLOCK FOR PAYMENT UPON CHOOSING A VOUCHER
-
 			}
 			else {
 				//SHOW THE NEXT BLOCK -  say no vouchers available
@@ -108,10 +105,12 @@ const getAllVouchers = async (userData, merchantPurpose) => {
 	}
 }
 
-const makePayment = async () => {
-	const amount = document.getElementById("amount");
-	const pin = document.getElementById("pin");
+const makePayment = async (d) => {
+	const amount = d.amount
+	const pin = d.pincode
 	console.log(chosenVoucher);
+	console.log("amount : ", amount)
+	console.log("pin: ", pin)
 	if (amount > chosenVoucher.amount) {
 		errorPayMessage.textContent = "Not enough balance in voucher. Choose another voucher and try again."
 		errorPayMessage.style.display = 'BLOCK';
@@ -122,8 +121,8 @@ const makePayment = async () => {
 			//HIT AN API TO DO MONEY DEDUCTION
 			const response = await axios.request({
 				method: 'POST',
-				url: 'http://localhost:3000/api/v1/vouchers/getVoucher',
-				data: userData,
+				url: 'http://localhost:3000/api/v1/transactions/pay',
+				data: d,
 				headers: { 'authorization': jwtToken }
 			})
 
@@ -166,5 +165,13 @@ chooseVoucher.addEventListener("click", (e) => {
 
 pay.addEventListener("click", (e) => {
 	e.preventDefault();
-	makePayment();
+	let d= {
+		phoneNumber : userPhoneNumber,
+		pincode : document.getElementById("pin").value,      
+		amount: document.getElementById("amount").value,
+		voucherId: chosenVoucher.voucherId,
+		merchantPhoneNumber: merchantPhoneNumber.value
+	}
+	console.log("data object: ", d)
+	makePayment(d);
 })
