@@ -21,7 +21,7 @@
         <div class="card shadow" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title text-center">Request voucher</h5>
-                <form>
+                <form id="request-voucher">
                     <div class="profile-btn">
                         <button class="btn btn-outline-dark">Profile</button>
                     </div>
@@ -30,13 +30,17 @@
                         <input type="text" class="form-control" id="purpose" required>
                         <label for="amount" class="form-label">Amount</label>
                         <input type="text" class="form-control" id="amount" required>
-                        <label for="expiry date" class="form-label">Expiry date</label>
-                        <input type="date" class="form-control" id="expiry date" required>
+                        <label for="expiryDate" class="form-label">Expiry date</label>
+                        <input type="date" class="form-control" id="expiryDate" required>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    <div id="success-message" class="text-success text-center mt-3" style="display: none;">Requested Voucher</div>
+                    <div id="error-message" class="text-danger text-center mt-3" style="display: none;"></div>
                 </form>
             </div>
         </div>
     </div>
+    <script src="js/requestVoucher.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 </body>
 </html>

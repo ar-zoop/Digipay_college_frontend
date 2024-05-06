@@ -5,7 +5,7 @@ const errorMessageDiv = document.getElementById("error-message");
 
 const signIn =  async(d) => {
     console.log("signIn function called");
-    try{
+    try{ 
         const response = await axios.request({
             method : 'POST',
             url : 'http://localhost:3000/api/v1/users/signIn',

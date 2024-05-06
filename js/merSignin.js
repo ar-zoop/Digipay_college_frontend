@@ -12,7 +12,7 @@ const signIn =  async(d) => {
             data : d
         })
         console.log(response)
-        if (response.status == 200 ){
+        if (response.status == 200 || response.status==201){
             console.log("Login successful");
             const jwtToken = json.response.response;
             localStorage.setItem('jwtToken', jwtToken);
