@@ -1,24 +1,22 @@
 const phoneNumber = document.getElementById("phoneNumber")
-const password = document.getElementById("password")
+const password = document.getElementById("password") 
 const form = document.getElementById('form-signin');
 const errorMessageDiv = document.getElementById("error-message");
 
-const signIn = async(d) => {
+const signIn =  async(d) => {
     console.log("signIn function called");
-    try{ 
+    try{
         const response = await axios.request({
             method : 'POST',
-            url : 'http://localhost:3000/api/v1/users/signIn',
+            url : 'http://localhost:3000/api/v1/merchant/signIn',
             data : d
         })
         console.log(response)
-        if (response.status == 201 || response.status == 200 ){
+        if (response.status == 200 || response.status==201){
             console.log("Login successful");
-            const jwtToken = response.data.data;
-            console.log('jwtToken', jwtToken);
-            console.log('phoneNumber', d.phoneNumber);
+            const jwtToken = json.response.response;
             localStorage.setItem('jwtToken', jwtToken);
-            localStorage.setItem('phoneNumber', d.phoneNumber);
+            localStorage.setItem('phoneNumber', response.phoneNumber);
             window.location.href = 'dashboard.html';  
         }
         else{

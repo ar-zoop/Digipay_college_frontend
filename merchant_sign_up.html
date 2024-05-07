@@ -21,7 +21,7 @@
         <div class="card shadow" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title text-center">Sign Up</h5>
-                <form>
+                <form id="form-signUp">
                     <div class="mb-3">
                         <label for="phoneNumber" class="form-label">Phone number</label>
                         <input type="tel" class="form-control" id="phoneNumber" required>
@@ -35,9 +35,12 @@
                         <input type="text" class="form-control" id="purpose" required>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Merchant Sign Up</button>
+                    <div id="error-message" class="text-danger text-center mt-3" style="display: none;"></div>
                 </form>
             </div>
         </div>
     </div>
+    <script src="js/merchantSignUp.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 </body>
 </html>
