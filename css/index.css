@@ -51,7 +51,7 @@ a {
     padding: 35px;
 }
 .card {
-    margin-top: -50px;  /* Adjusts the vertical position of the login box */
+    margin-top: 50px;  /* Adjusts the vertical position of the login box */
 }
 
 /* Small devices (landscape phones, 576px and up) */

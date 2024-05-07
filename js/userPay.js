@@ -1,9 +1,10 @@
+const jwtToken = localStorage.getItem('jwtToken');
+const userPhoneNumber = localStorage.getItem('phoneNumber')
+
 const form = document.getElementById('form');
 const errorMessageDiv = document.getElementById("error-message");
-const jwtToken = localStorage.getItem('jwtToken');
 const merchantPhoneNumber = document.getElementById("merchantPhoneNumber");
 const merchantInformationDiv = document.getElementById("merchant-information");
-const userPhoneNumber = localStorage.getItem('phoneNumber')
 const voucherBox = document.getElementById("voucherBox")
 const container = document.getElementById('radioContainer');
 const verifyMerchant = document.getElementById("verifyMerchant");
