@@ -3,6 +3,8 @@ const jwtToken = localStorage.getItem('jwtToken');
 
 const errorMessageDiv = document.getElementById("errorMessage");
 const container = document.getElementById("transactionBox")
+const toastTrigger = document.getElementById('liveToastBtn')
+const toastLiveExample = document.getElementById('liveToast')
 
 
 const showTransactions = async (d) => {
@@ -15,17 +17,29 @@ const showTransactions = async (d) => {
 			headers: { 'authorization': jwtToken }
 		})
 
-		if (response.status == 200 || response.status == 201) {
+		if (response.status == 200 || response.status == 201 && transactionArray.length>0) {
 
 			const transactionArray = response.data.data;
 			console.log(transactionArray)
+
+			let lastElement = transactionArray[transactionArray.length - 1];
+
+			if(localStorage.getItem("latestTransaction") != lastElement.createdAt){
+				//show a pop up
+				
+				localStorage.setItem("latestTransaction", lastElement.createdAt);
+
+				var alertElement = document.getElementById('myAlert');
+	
+				// Remove the 'd-none' class to make it visible
+				alertElement.classList.remove('d-none');	
+			}
 			
-			for (i = 0; i < transactionArray.length; i++) {
+			for (i = transactionArray.length-1; i>=0 ; i--) {
 				let userPhoneNumber = transactionArray[i].userPhoneNumber;
 				let amount = transactionArray[i].amount;
 				let transactionDate = transactionArray[i].date;
                 let time = transactionArray[i].time;
-                let voucherId = transactionArray[i].voucherId;
                 const transactionHtml = `
                 <div>Amount: <span>${amount}</span></div>
                 <div>Date & Time: <span>${transactionDate} ${time}</span></div>
@@ -57,3 +71,7 @@ window.addEventListener("load", (e) => {
 	console.log("data object: ", d)
 	showTransactions(d);
 })
+
+setTimeout(function(){
+	window.location.reload();
+ }, 5000);
