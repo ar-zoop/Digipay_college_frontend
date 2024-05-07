@@ -10,7 +10,7 @@ const showTransactions = async (d) => {
 	try {
 		const response = await axios.request({
 			method: 'POST',
-			url: 'http://localhost:3000/api/v1/transactions',
+			url: 'http://localhost:3000/api/v1/transactions/getTransaction',
 			data: d,
 			headers: { 'authorization': jwtToken }
 		})
@@ -21,11 +21,10 @@ const showTransactions = async (d) => {
 			console.log(transactionArray)
 			
 			for (i = 0; i < transactionArray.length; i++) {
-				let merchantPhoneNumber = transactionArray[i].merchantPhoneNumber;
+				let voucherId = transactionArray[i].merchantPhoneNumber;
 				let amount = transactionArray[i].amount;
 				let transactionDate = transactionArray[i].date;
                 let time = transactionArray[i].time;
-                let voucherId = transactionArray[i].voucherId;
                 const transactionHtml = `
                 <div>Amount: <span>${amount}</span></div>
                 <div>Date & Time: <span>${transactionDate} ${time}</span></div>
