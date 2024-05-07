@@ -3,7 +3,7 @@ const password = document.getElementById("password")
 const form = document.getElementById('form-signin');
 const errorMessageDiv = document.getElementById("error-message");
 
-const signIn =  async(d) => {
+const signIn = async(d) => {
     console.log("signIn function called");
     try{
         const response = await axios.request({
